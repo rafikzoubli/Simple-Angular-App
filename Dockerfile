@@ -1,17 +1,5 @@
-FROM node:current-alpine3.20 AS build
+FROM nginx:1.27.0-alpine
 
-RUN mkdir -p /app 
+COPY ./dist/my-angular-app /usr/share/nginx/html
 
-WORKDIR /app
-
-COPY package.json /app/
-
-RUN npm install
-
-COPY . /app/
-
-RUN npm run build --prod
-
-CMD ["npm", "run", "start"]
-
-
+CMD ["nginx", "-g", "daemon off;"]
