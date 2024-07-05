@@ -11,12 +11,12 @@
     - name: Build Docker image
       docker_image:
         name: rafikzoubli/myapp:latest
-        path: .
         build:
+          context: /path/to/your/dockerfile/directory
+          dockerfile: Dockerfile
           pull: yes
           nocache: yes
           rm: yes
-        dockerfile: Dockerfile
 
     - name: Push Docker image to Docker Hub
       docker_image:
