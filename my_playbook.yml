@@ -2,10 +2,20 @@
 - name: Build and run Docker image
   hosts: localhost
   tasks:
+    - name: Stop previous container if running
+      become: yes
+      command: docker stop my-angular-app-container
+      ignore_errors: yes
+
+    - name: Remove previous container if exists
+      become: yes
+      command: docker rm my-angular-app-container
+      ignore_errors: yes
+
     - name: Build Docker image
       become: yes
-      command: docker build -t my-angular-app-image .
+      command: docker build -t my-angular-app-image /var/lib/jenkins/workspace/my-angular-app
 
     - name: Run Docker container
       become: yes
-      command: docker run -d -p 80:80 my-angular-app-image
+      command: docker run -d -p 80:80 --name my-angular-app-container my-angular-app-image
