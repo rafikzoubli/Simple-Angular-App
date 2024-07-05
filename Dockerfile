@@ -12,8 +12,8 @@ RUN npm install
 COPY . /app/
 RUN npm run build --prod
 
-# Add a command to verify files in /app/dist/my-angular-app
-RUN ls -l /app/dist/my-angular-app
+# Add commands to verify files in /app/dist/my-angular-app
+RUN ls -l /app/dist/my-angular-app > /app/ls_output.txt
 
 # Stage 2: Final Stage
 FROM nginx:1.27.0-alpine
@@ -21,8 +21,8 @@ FROM nginx:1.27.0-alpine
 # Copy built Angular app from previous stage
 COPY --from=build /app/dist/my-angular-app /usr/share/nginx/html
 
-# Add a command to verify files in /usr/share/nginx/html
-RUN ls -l /usr/share/nginx/html
+# Add commands to verify files in /usr/share/nginx/html
+RUN ls -l /usr/share/nginx/html > /app/nginx_ls_output.txt
 
 # Optionally, you can add other configuration or checks here
 
