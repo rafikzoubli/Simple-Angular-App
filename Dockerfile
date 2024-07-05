@@ -10,6 +10,8 @@ RUN npm install
 COPY . /app/
 RUN npm run build --prod
 
+RUN ls -l /app/dist/my-angular-app > /app/ls_output.txt
+
 FROM nginx:1.27.0-alpine
 
 RUN mkdir -p /app
