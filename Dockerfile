@@ -12,4 +12,6 @@ COPY . /app/
 
 RUN npm run build --prod
 
-RUN ls -l /app/ > /app/ls.txt
+CMD ["npm", "run", "start"]
+
+
