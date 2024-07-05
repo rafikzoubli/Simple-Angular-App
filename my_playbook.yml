@@ -26,7 +26,7 @@
 
     - name: Docker login to Docker Hub
       become: yes
-      command: docker login -u rafikzoubli -p dckr_pat_f9XpBNs_8cbRoKNSLCvnSRdWvXw
+      command: docker login -u rafikzoubli -p tokengoeshere
 
     - name: Push Docker image to Docker Hub
       become: yes
