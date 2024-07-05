@@ -3,17 +3,17 @@ FROM node:latest AS node
 
 WORKDIR /app
 
-//COPY package*.json ./
+# COPY package*.json ./
 COPY . .
 
 RUN npm install
 
-//COPY . .
+# COPY . .
 RUN npm run build --prod
 
 FROM nginx:alpine
 
 COPY --from=node /app/dist/my-angular-app /usr/share/nginx/html
 
-//EXPOSE 80
-//CMD //["nginx", "-g", "daemon off;"]
+# EXPOSE 80
+# CMD //["nginx", "-g", "daemon off;"]
