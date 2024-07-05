@@ -1,5 +1,5 @@
 # Stage 1: Build the angular img
-FROM node:current-alpine3.20 as build
+FROM node:current-alpine3.20 AS build
 
 RUN mkdir -p /app 
 
