@@ -1,19 +1,22 @@
-# Stage 1: Build Stage
-FROM node:latest AS node
+# Stage 1: Build the angular img
+FROM node:current-alpine3.20 as build
+
+RUN mkdir -p /app 
 
 WORKDIR /app
 
-# COPY package*.json ./
-COPY . .
+COPY package.json /app/
 
 RUN npm install
 
-# COPY . .
+COPY . /app/
+
 RUN npm run build --prod
 
-FROM nginx:alpine
+# Stage 2: Build Stage
 
-COPY --from=node /app/dist/my-angular-app /usr/share/nginx/html
+FROM nginx:1.27.0-alpine
 
-# EXPOSE 80
-# CMD //["nginx", "-g", "daemon off;"]
+COPY --from=build /app/dist/my-angular-app /usr/share/nginx/html
+
+
