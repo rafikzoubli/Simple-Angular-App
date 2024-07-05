@@ -12,7 +12,8 @@ RUN npm run build --prod
 # Stage 2: Deployment Stage
 FROM nginx:alpine
 
-COPY --from=build /app/dist/my-angular-app/ /usr/share/nginx/html
+# Copy built files from build-stage
+COPY --from=build-stage /app/dist/my-angular-app/ /usr/share/nginx/html
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
