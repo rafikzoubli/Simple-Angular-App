@@ -1,0 +1,24 @@
+---
+- name: Build and push Docker image to Docker Hub
+  hosts: localhost
+  become: yes
+  tasks:
+    - name: Set Docker Hub credentials
+      docker_login:
+        username: rafikzoubli
+        password: "dckr_pat_f9XpBNs_8cbRoKNSLCvnSRdWvXw"
+        
+    - name: Build Docker image
+      docker_image:
+        name: rafikzoubli/myapp:latest
+        path: .
+        build:
+          pull: yes
+          nocache: yes
+          rm: yes
+        dockerfile: Dockerfile
+
+    - name: Push Docker image to Docker Hub
+      docker_image:
+        name: rafikzoubli/myapp:latest
+        push: yes
