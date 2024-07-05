@@ -12,14 +12,14 @@
       command: docker rm my-angular-app-container
       ignore_errors: yes
 
-    - name: Remove previous Docker image if exists
-      become: yes
-      command: docker rmi -f my-angular-app-image
-      ignore_errors: yes
-
     - name: Build Docker image
       become: yes
       command: docker build -t my-angular-app-image .
+
+      - name: Run Docker container from Docker Hub image
+      become: yes
+      command: docker run -d --name my-angular-app-container -p 80:80 rafikzoubli/my-angular-app-image
+
 
     - name: Tag Docker image for Docker Hub
       become: yes
