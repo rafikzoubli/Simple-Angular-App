@@ -12,6 +12,11 @@
       command: docker rm my-angular-app-container
       ignore_errors: yes
 
+    - name: Remove previous Docker image if exists
+      become: yes
+      command: docker rmi -f my-angular-app-image
+      ignore_errors: yes
+
     - name: Build Docker image
       become: yes
       command: docker build -t my-angular-app-image .
