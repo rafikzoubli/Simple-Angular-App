@@ -12,7 +12,7 @@
       docker_image:
         name: rafikzoubli/myapp:latest
         build:
-          context: /path/to/your/dockerfile/directory
+          context: .
           dockerfile: Dockerfile
           pull: yes
           nocache: yes
