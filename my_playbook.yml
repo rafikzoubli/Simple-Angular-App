@@ -15,11 +15,12 @@
     - name: Build Docker image
       become: yes
       command: docker build -t my-angular-app-image .
+      args:
+        chdir: /path/to/your/dockerfile/directory  # Specify the directory where your Dockerfile is located
 
-      - name: Run Docker container from Docker Hub image
+    - name: Run Docker container from Docker Hub image
       become: yes
       command: docker run -d --name my-angular-app-container -p 80:80 rafikzoubli/my-angular-app-image
-
 
     - name: Tag Docker image for Docker Hub
       become: yes
