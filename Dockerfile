@@ -16,6 +16,9 @@ COPY . .
 # Build the Angular app in production mode
 RUN npm run build --prod
 
+# Debugging step to check the contents of the dist directory
+RUN ls -al /app/dist
+
 # Stage 2: Deployment Stage
 FROM nginx:alpine
 
