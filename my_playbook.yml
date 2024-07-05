@@ -14,7 +14,7 @@
 
     - name: Build Docker image
       become: yes
-      command: docker build -t my-angular-app-image /var/lib/jenkins/workspace/my-angular-app
+      command: docker build -t my-angular-app-image .
 
     - name: Run Docker container
       become: yes
