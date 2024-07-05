@@ -18,13 +18,13 @@ RUN npm run build --prod
 
 # Debugging step to check the contents of the dist directory
 RUN ls -al /app/dist
-RUN ls -al /app/dist/angular-app
+RUN ls -al /app/dist/my-angular-app
 
 # Stage 2: Deployment Stage
 FROM nginx:alpine
 
 # Copy the built app from the build stage to the nginx server
-COPY --from=build-stage /app/dist/angular-app /usr/share/nginx/html
+COPY --from=build-stage /app/dist/my-angular-app /usr/share/nginx/html
 
 # Expose port 80 to the outside world
 EXPOSE 80
